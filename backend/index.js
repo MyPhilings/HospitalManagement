@@ -28,10 +28,6 @@ db.on("error", (err) => {
 db.once("open", () => console.log("connected to MongoDB"));
 
 // Routes
-// Patients
-const patientRoute = require("./routes/patientRoute");
-app.use("/api/v1/patients", patientRoute);
-
 //Doctors
 const doctorsRoute = require("./routes/doctorsRoute");
 app.use("/doctors", doctorsRoute);
