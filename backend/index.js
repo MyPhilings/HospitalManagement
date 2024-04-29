@@ -13,10 +13,11 @@ app.use(express.json());
 console.log(process.env.MONGO_URI);
 
 mongoose.set("strictQuery", false);
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(process.env.MONGO_URI);
+// mongoose.connect(process.env.MONGO_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 let db = mongoose.connection;
 
@@ -31,23 +32,16 @@ db.once("open", () => console.log("connected to MongoDB"));
 const patientRoute = require("./routes/patientRoute");
 app.use("/api/v1/patients", patientRoute);
 
-app.listen(portNumber, () => {
-  console.log("new changee 1");
-  console.log("new changee 2");
+//Doctors
+const doctorsRoute = require("./routes/doctorsRoute");
+app.use("/doctors", doctorsRoute);
 
-  console.log("new changee 3");
+//Admissions
+const admissionsRoute = require("./routes/admissionsRoute"); 
+app.use("/admissions", admissionsRoute);
+
+app.listen(portNumber, () => {
 
   console.log(`server is running on http://localhost:${portNumber}`);
 
-  console.log("new changee 4");
 });
-
-// 1. Araneta
-// 2. Ong
-// 3. Carandang
-// 4. Gallardo
-// 5. Estacio
-// 6. Quiroz
-// 7. Manalo
-// 8. Lopez (code)
-// 9. Espinoza (code)
